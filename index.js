@@ -65,16 +65,13 @@ app.get("/api/city/:cityId", async (req, res) => {
     if (!history.length) {
       return res.status(404).json({ error: "City not found", latest: null });
     }
-
     const latest = history.at(-1);
-
     res.json({ latest, history });
   } catch (err) {
     console.error("GET /api/city/:id error:", err);
     res.status(500).json({ error: "Failed to load city details" });
   }
 });
-
 
 // POST /api/refresh
 app.post("/api/refresh", async (req, res) => {

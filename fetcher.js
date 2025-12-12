@@ -191,22 +191,6 @@ async function fetchWeather(lat, lon) {
     return null;
   }
 }
-
-// async function fetchAQI(lat, lon) {
-//   try {
-//     let key = process.env.OPENAQ_KEY;
-//     // let url = `https://api.openaq.org/v3/latest?coordinates=${lat},${lon}&radius=50000&limit=1`;
-//     let url ="https://api.openaq.org/v3/locations"
-//     let r = await axios.get(url, { headers: { "X-API-Key": key } });
-//   console.log("fetchAQI:response", r);
-//     return r.data;
-//   } catch (err) {
-//     console.error("AQI fetch error:", err.response?.status, err.response?.data || err.message);
-//     return null;
-//   }
-// }
-
-
 async function fetchAQI(lat, lon) {
   try {
     const key = process.env.OPENWEATHER_KEY;
@@ -239,11 +223,11 @@ async function fetchCurrencyToINR(code) {
 
     const resp = await axios.get(`https://api.exchangerate.host/convert?access_key=${key}&from=${code}&to=INR&amount=1`);
     console.log("fetchCurrencyToINR:response", resp.data);
-     return {
-      currency: code,
-      inrValue: resp.data.result ?? null,
-    };
-    // return resp.data.result;
+    //  return {
+    //   currency: code,
+    //   inrValue: resp.data.result ?? null,
+    // };
+    return resp.data.result;
   } catch (err) {
     console.error("Currency fetch error:", err.response?.status, err.response?.data || err.message);
     return null;
