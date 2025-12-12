@@ -221,7 +221,8 @@ async function fetchCurrencyToINR(code) {
     const key = process.env.EXCHANGE_KEY;
     console.log("url", `https://api.exchangerate.host/latest?access_key=${key}&base=${code}&symbols=INR`)
 
-    const resp = await axios.get(`https://api.exchangerate.host/convert?access_key=${key}&from=${code}&to=INR&amount=1`);
+    const resp = await axios.get(`https://api.frankfurter.app/latest?from=${code}&to=INR`);
+    // const resp = await axios.get(`https://api.exchangerate.host/convert?access_key=${key}&from=${code}&to=INR&amount=1`);
     console.log("fetchCurrencyToINR:response", resp.data);
     //  return {
     //   currency: code,
@@ -253,7 +254,7 @@ async function fetchAllCityMetrics() {
         aqiComponents: a?.results?.[0]?.measurements ?? [],
         population: c.population || null,
         currency: c.currency || "USD",
-        currencyToINR: rate ?? null,
+        currencyToINR: rate ?? "NA",
         timestamp: new Date(),
       });
 

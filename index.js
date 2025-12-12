@@ -86,7 +86,8 @@ app.post("/api/refresh", async (req, res) => {
 });
 
 // Start cron: every 5 minutes
-cron.schedule("*/5 * * * *", async () => {
+// cron.schedule("*/5 * * * *", async () => {
+cron.schedule("0 * * * *", async () => {
   console.log("cron: fetching city metrics...");
   try {
     await fetchAllCityMetrics();
